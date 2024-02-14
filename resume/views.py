@@ -1,12 +1,6 @@
 from django.shortcuts import render
 from django.contrib import messages
-from .models import (
-		UserProfile,
-		Blog,
-		Portfolio,
-		Testimonial,
-		Certificate
-	)
+from . models import *
 
 from django.views import generic
 
@@ -24,8 +18,10 @@ class IndexView(generic.TemplateView):
 		certificates = Certificate.objects.filter(is_active=True)
 		blogs = Blog.objects.filter(is_active=True)
 		portfolio = Portfolio.objects.filter(is_active=True)
+		skills=Skill.objects.all()
 		
 		context["testimonials"] = testimonials
+		context["skills"]=skills
 		context["certificates"] = certificates
 		context["blogs"] = blogs
 		context["portfolio"] = portfolio
